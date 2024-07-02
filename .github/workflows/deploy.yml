@@ -23,13 +23,9 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and push Docker images
-        env:
-          IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build --build-arg CACHEBUST=$(date +%s) -t yogendra311/client:${IMAGE_TAG} ./letstalk
-          docker build --build-arg CACHEBUST=$(date +%s) -t yogendra311/server:${IMAGE_TAG} ./backend
-          docker push yogendra311/client:${IMAGE_TAG}
-          docker push yogendra311/server:${IMAGE_TAG}
+          docker-compose -f docker-compose.yml build
+          docker-compose -f docker-compose.yml push
 
       - name: SSH into EC2 and deploy
         uses: appleboy/ssh-action@master
@@ -40,8 +36,7 @@ jobs:
           script: |
             cd ./let-s_talk
             git pull origin master
-            export IMAGE_TAG=${{ github.sha }}
-            sudo docker-compose pull
-            sudo docker-compose down
-            sudo docker-compose up -d --force-recreate
+            sudo docker-compose -f docker-compose.yml pull
+            sudo docker-compose -f docker-compose.yml down
+            sudo docker-compose -f docker-compose.yml up -d --force-recreate
             sudo docker system prune -af
