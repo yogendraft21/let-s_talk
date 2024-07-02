@@ -36,7 +36,6 @@ jobs:
           script: |
             cd ./let-s_talk
             git pull origin master
-            sudo docker-compose -f docker-compose.yml pull
-            sudo docker-compose -f docker-compose.yml down
-            sudo docker-compose -f docker-compose.yml up -d --force-recreate
-            sudo docker system prune -af
+            sudo docker-compose pull
+            sudo docker-compose down -v
+            sudo docker-compose up --build
