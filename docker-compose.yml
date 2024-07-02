@@ -1,6 +1,6 @@
 services:
   client:
-    image: yourdockerhubusername/client:${IMAGE_TAG}
+    image: yogendra311/client:${IMAGE_TAG}
     build:
       context: ./letstalk
       dockerfile: Dockerfile
@@ -10,7 +10,7 @@ services:
       - server
 
   server:
-    image: yourdockerhubusername/server:${IMAGE_TAG}
+    image: yogendra311/server:${IMAGE_TAG}
     build:
       context: ./backend
       dockerfile: Dockerfile
