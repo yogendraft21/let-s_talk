@@ -35,6 +35,6 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
             cd ./let-s_talk
-            git pull origin main
+            git pull origin master
             sudo docker-compose pull
             sudo docker-compose up -d
