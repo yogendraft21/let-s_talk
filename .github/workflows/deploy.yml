@@ -39,4 +39,3 @@ jobs:
             sudo docker-compose pull
             sudo docker-compose down -v
             sudo docker-compose up --build
-            sudo docker system prune -af
