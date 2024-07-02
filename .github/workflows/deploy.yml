@@ -34,7 +34,7 @@ jobs:
           username: ec2-user
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
-            cd /path/to/your/project
+            cd ./let-s_talk
             git pull origin main
             sudo docker-compose pull
             sudo docker-compose up -d
