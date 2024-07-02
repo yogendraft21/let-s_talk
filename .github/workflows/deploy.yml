@@ -38,7 +38,7 @@ jobs:
           username: ec2-user
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
-            cd /path/to/your/project
+            cd ./let-s_talk
             git pull origin master
             export IMAGE_TAG=${{ github.sha }}
             sudo docker-compose pull
