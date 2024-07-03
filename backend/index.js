@@ -1,13 +1,7 @@
-const express = require('express');
-const app = express();
-const port = 5000;
+const app = require("./app");
 
-// Define a route handler for the default home page
-app.get('/', (req, res) => {
-  res.send('Hello, CI-CD working fine...lets go...');
-});
+const PORT = process.env.PORT;
 
-// Start the server and listen on the specified port
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });

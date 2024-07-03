@@ -1,12 +1,20 @@
 "use client";
 
+import { fetchUserError, fetchUserSuccess } from "@/services/userService";
 import React, { useState } from "react";
 
 export default function Home() {
   const [isSignUp, setIsSignUp] = useState(false);
 
-  const handleSignUpClick = () => {
-    setIsSignUp(true);
+  const handleSignUpClick = async () => {
+    try {
+      const response = await fetchUserError();
+      console.log("User successfully fetched:", response);
+      // Perform actions with the response data if needed
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      // Handle or display error message
+    }
   };
 
   return (
@@ -128,6 +136,7 @@ export default function Home() {
               </div>
               <button
                 type="submit"
+                onClick={handleSignUpClick}
                 className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
               >
                 {isSignUp ? "Sign up" : "Sign in"}
